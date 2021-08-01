@@ -2,7 +2,9 @@
  * Renders API response in a pretty way.
  *
  * @param {Object} response
+ *
  * @returns {JSX.Element}
+ *
  * @constructor
  */
 function PrettyResponse({ response }) {

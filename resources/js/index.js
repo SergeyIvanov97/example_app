@@ -1,4 +1,4 @@
 import ReactDOM from 'react-dom';
-import ButtonsComponent from './components/ButtonsComponent';
+import Page from './components/Page';
 
-ReactDOM.render(<ButtonsComponent/>, document.getElementById('root'));
+ReactDOM.render(<Page/>, document.getElementById('root'));

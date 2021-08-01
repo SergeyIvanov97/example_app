@@ -1,18 +1,22 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
+import Button1 from './Button1';
+import Button2 from './Button2';
+import Button3 from './Button3';
 import PrettyResponse from './PrettyResponse';
 
 /**
  * Root component.
  *
  * @returns {JSX.Element}
+ *
  * @constructor
  */
-function ButtonsComponent() {
+function Page() {
     const [state, setState] = useState({
         message: 'Press a button!',
     });
 
-    const fetchData = (e) => {
+    const fetchData = useCallback((e) => {
         e.target.disabled = true;
         setState({
             message: 'Loading...',
@@ -22,7 +26,7 @@ function ButtonsComponent() {
             .then(r => r.json())
             .then(data => setState(data))
             .then(() => e.target.disabled = false);
-    };
+    }, []);
 
     return (
         <div className="container p-4 mh-100">
@@ -32,21 +36,9 @@ function ButtonsComponent() {
                         <div className="card-header">Test task for РНР</div>
                         <div className="card-body">
                             <div className="btn-toolbar justify-content-around">
-                                <div className="btn-group" role="group">
-                                    <button type="button" name="button_1" className="btn btn-primary"
-                                            onClick={fetchData}>Button 1
-                                    </button>
-                                </div>
-                                <div className="btn-group">
-                                    <button type="button" name="button_2" className="btn btn-primary"
-                                            onClick={fetchData}>Button 2
-                                    </button>
-                                </div>
-                                <div className="btn-group">
-                                    <button type="button" name="button_3" className="btn btn-primary"
-                                            onClick={fetchData}>Button 3
-                                    </button>
-                                </div>
+                                <Button1 fetchData={fetchData}/>
+                                <Button2 fetchData={fetchData}/>
+                                <Button3 fetchData={fetchData}/>
                             </div>
                             <hr/>
                             <div>
@@ -60,4 +52,4 @@ function ButtonsComponent() {
     );
 }
 
-export default ButtonsComponent;
+export default Page;
