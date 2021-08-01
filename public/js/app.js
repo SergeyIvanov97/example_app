@@ -2095,13 +2095,12 @@ function Page() {
       return r.json();
     }).then(function (data) {
       return setState(data);
-    }).then(function () {
-      return event.target.disabled = false;
     })["catch"](function (error) {
-      setState({
+      return setState({
         message: error.toString()
       });
-      event.target.disabled = false;
+    })["finally"](function () {
+      return event.target.disabled = false;
     });
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {

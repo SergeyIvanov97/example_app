@@ -25,11 +25,8 @@ function Page() {
         fetch(`/api/fetch-data?button=${event.target.name}`)
             .then(r => r.json())
             .then(data => setState(data))
-            .then(() => event.target.disabled = false)
-            .catch(error => {
-                setState({ message: error.toString() });
-                event.target.disabled = false;
-            });
+            .catch(error =>  setState({ message: error.toString() }))
+            .finally(() => event.target.disabled = false);
     }, []);
 
     return (
