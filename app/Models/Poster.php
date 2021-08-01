@@ -19,7 +19,7 @@ class Poster extends Model
      *
      * @var string[]
      */
-    protected array $fillable = ['url'];
+    protected $fillable = ['url'];
 
     /**
      * One-to-one relation with Record model.

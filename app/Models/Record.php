@@ -22,7 +22,7 @@ class Record extends Model
      *
      * @var string[]
      */
-    protected array $fillable = [
+    protected $fillable = [
         'title',
         'year',
         'type',
