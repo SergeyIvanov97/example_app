@@ -16,16 +16,20 @@ function Page() {
         message: 'Press a button!',
     });
 
-    const fetchData = useCallback((e) => {
-        e.target.disabled = true;
+    const fetchData = useCallback((event) => {
+        event.target.disabled = true;
         setState({
             message: 'Loading...',
         });
 
-        fetch(`/api/fetch-data?button=${e.target.name}`)
+        fetch(`/api/fetch-data?button=${event.target.name}`)
             .then(r => r.json())
             .then(data => setState(data))
-            .then(() => e.target.disabled = false);
+            .then(() => event.target.disabled = false)
+            .catch(error => {
+                setState({ message: error.toString() });
+                event.target.disabled = false;
+            });
     }, []);
 
     return (

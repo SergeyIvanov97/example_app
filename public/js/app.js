@@ -2086,17 +2086,22 @@ function Page() {
       state = _useState2[0],
       setState = _useState2[1];
 
-  var fetchData = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(function (e) {
-    e.target.disabled = true;
+  var fetchData = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(function (event) {
+    event.target.disabled = true;
     setState({
       message: 'Loading...'
     });
-    fetch("/api/fetch-data?button=".concat(e.target.name)).then(function (r) {
+    fetch("/api/fetch-data?button=".concat(event.target.name)).then(function (r) {
       return r.json();
     }).then(function (data) {
       return setState(data);
     }).then(function () {
-      return e.target.disabled = false;
+      return event.target.disabled = false;
+    })["catch"](function (error) {
+      setState({
+        message: error.toString()
+      });
+      event.target.disabled = false;
     });
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
